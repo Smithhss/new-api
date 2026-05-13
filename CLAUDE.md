@@ -1,5 +1,11 @@
 # CLAUDE.md — Project Conventions for new-api
 
+@../.claude/rules-security.md
+@../.claude/rules-permissions.md
+@../.claude/rules-style.md
+@../.claude/rules-project.md
+@../.claude/rules-logging.md
+
 ## Overview
 
 This is an AI API gateway/proxy built with Go. It aggregates 40+ upstream AI providers (OpenAI, Claude, Gemini, Azure, AWS Bedrock, etc.) behind a unified API, with user management, billing, rate limiting, and an admin dashboard.
