@@ -63,10 +63,14 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           command_timeout: 30m
+          envs: GH_TOKEN,GH_ACTOR
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo "$GH_TOKEN" | docker login ghcr.io -u "$GH_ACTOR" --password-stdin
             docker compose pull
             docker compose up -d --remove-orphans
             docker compose ps
-            echo "✅ Deploy completed at $(date)"
+            echo "Deploy completed at $(date)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
